@@ -28,8 +28,7 @@ export const AddCard = () => {
   const { isOpen, openModal, closeModal } = Modal.use();
   const { setStep, setData } = Funnel.useContext();
   const formMethods = useForm();
-  const values = formMethods.values as unknown as CardData;
-  const { errors } = formMethods;
+  const { values, errors } = formMethods;
   const fieldAmount = Object.values(CARD_FIELDS).reduce(
     (amount, field) => (amount += Object.values(field).length),
     0
@@ -45,14 +44,18 @@ export const AddCard = () => {
     setData((prevData) => {
       if (!prevData) return;
 
-      return {
+      const newCard = {
+        ...values,
+        createdAt: new Date(),
+        id: uuidv4(),
+      } as CardData;
+
+      const newContextData = {
         ...prevData,
-        tempCard: {
-          ...values,
-          createdAt: new Date(),
-          id: uuidv4(),
-        },
+        cardList: [...prevData.cardList, newCard],
       };
+
+      return newContextData;
     });
 
     setStep(STEP.CARD_CONFIG);
@@ -64,8 +67,8 @@ export const AddCard = () => {
   return (
     <>
       <div>
-        <button onClick={handlePrev} className='button-reset'>
-          <h2 className='page-title'>{`< 카드 추가`}</h2>
+        <button onClick={handlePrev} className="button-reset">
+          <h2 className="page-title">{`< 카드 추가`}</h2>
         </button>
         <Card
           onClick={openModal}
@@ -100,7 +103,7 @@ export const AddCard = () => {
         />
 
         {isAllFieldsFulfilled && (
-          <div className='button-box' onClick={handleNext}>
+          <div className="button-box" onClick={handleNext}>
             <button
               className={`button-text button-reset button-activate ${optaionalClassName}`}
             >
