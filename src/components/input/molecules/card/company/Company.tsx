@@ -1,9 +1,8 @@
-import { ModalItem } from '@/components/modal/atom/Modalitem';
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CARD_COMPANY } from './company.constant';
 import { CardInputFormMethods } from '../cardInput.type';
-import { Dot } from '@/components/common/Dot';
+import { CompanyOption } from './atom/CompanyOption';
 
 interface CompanyProps {
   formMethods: CardInputFormMethods;
@@ -28,11 +27,7 @@ export const Company = ({ formMethods, closeModal }: CompanyProps) => {
               },
             })}
           />
-          <ModalItem
-            key={key}
-            name={value.name}
-            topContent={<Dot color={value.color} />}
-          />
+          <CompanyOption name={value.name} color={value.color} />
         </label>
       ))}
     </div>
