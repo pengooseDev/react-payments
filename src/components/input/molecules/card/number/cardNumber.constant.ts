@@ -1,8 +1,9 @@
 import { INPUT } from '@/components/input/input.constant';
 import { Validation } from '@/utils/validation';
 import { InputFields } from '../cardInput.type';
+import { CardForm } from '@/pages/Payments/payments.type';
 
-export const CARD_NUMBER: InputFields = {
+export const CARD_NUMBER: InputFields<CardForm> = {
   FIELDS: {
     FIRST: {
       name: 'numberFirst',
@@ -62,4 +63,4 @@ export const CARD_NUMBER: InputFields = {
   },
 
   TITLE: '카드 번호',
-};
+} as const;

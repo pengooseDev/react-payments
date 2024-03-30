@@ -18,6 +18,14 @@ export interface Card {
   company: CompanyKey;
 }
 
+export interface CardForm extends Card {
+  passwordFirst: string;
+  passwordSecond: string;
+  passwordThird: string;
+  passwordFourth: string;
+  securityCode: string;
+}
+
 export interface PaymentsCard extends Card {
   cardName?: string;
 }

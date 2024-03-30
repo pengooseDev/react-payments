@@ -1,12 +1,13 @@
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CardInputProps } from '../cardInput.type';
+import { CardForm } from '@/pages/Payments/payments.type';
 
 export const OwnerName = ({
   formMethods,
   autoFocusMethods,
   fields,
-}: CardInputProps) => {
+}: CardInputProps<CardForm>) => {
   const { register, values, errors } = formMethods;
   const { autoFocusRefs } = autoFocusMethods;
 
@@ -15,7 +16,8 @@ export const OwnerName = ({
   const allFieldsFulfilled = fieldsFulfilled.every((field) => field);
   const optionalClassName = allFieldsFulfilled ? 'text-fulfilled' : '';
 
-  const ownerNameLength = values[fields.FIELDS.OWNER_NAME.name]?.length;
+  const ownerNameLength =
+    values[fields.FIELDS.OWNER_NAME.name as 'ownerName']?.length;
 
   return (
     <Input.Container>

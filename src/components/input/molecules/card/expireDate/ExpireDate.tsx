@@ -1,12 +1,13 @@
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CardInputProps } from '../cardInput.type';
+import { CardForm } from '@/pages/Payments/payments.type';
 
 export const ExpireDate = ({
   formMethods,
   autoFocusMethods,
   fields,
-}: CardInputProps) => {
+}: CardInputProps<CardForm>) => {
   const { register, errors } = formMethods;
   const { autoFocusRefs, handleAutoFocus } = autoFocusMethods;
 

@@ -7,11 +7,7 @@ import {
   Values,
 } from './useForm.type';
 
-export interface FormMethodsProps {
-  formMethods: ReturnType<typeof useForm>;
-}
-
-export const useForm = () => {
+export const useForm = <T extends object>() => {
   const fieldsRef = useRef<FieldRef>({});
   const [, forceUpdate] = useState({});
 
@@ -97,8 +93,10 @@ export const useForm = () => {
   );
 
   const validateFields = useCallback(
-    ({ values, errors }: { values: Values; errors: Errors }) => {
-      const hasError = Object.keys(errors).some((name) => errors[name]);
+    ({ values, errors }: { values: Values<T>; errors: Errors<T> }) => {
+      const hasError = Object.keys(errors).some(
+        (name) => errors[name as keyof T]
+      );
 
       if (hasError) {
         console.log('error!');
@@ -107,7 +105,7 @@ export const useForm = () => {
       }
 
       const hasRequiredButEmpty = Object.keys(values).some(
-        (name) => fieldsRef.current[name].required && !values[name]
+        (name) => fieldsRef.current[name].required && !values[name as keyof T]
       );
 
       if (hasRequiredButEmpty) {
@@ -125,20 +123,20 @@ export const useForm = () => {
     return Object.keys(fieldsRef.current).reduce((valuesAcc, name) => {
       const field = fieldsRef.current[name];
 
-      valuesAcc[name] = field.value;
+      valuesAcc[name as keyof T] = field.value as T[keyof T];
 
       return valuesAcc;
-    }, {} as Values);
+    }, {} as Values<T>);
   }, []);
 
   const getErrors = useCallback(() => {
     return Object.keys(fieldsRef.current).reduce((acc, name) => {
       const field = fieldsRef.current[name];
 
-      acc[name] = field.error;
+      acc[name as keyof T] = field.error;
 
       return acc;
-    }, {} as Errors);
+    }, {} as Errors<T>);
   }, []);
 
   return { register, handleSubmit, values: getValues(), errors: getErrors() };

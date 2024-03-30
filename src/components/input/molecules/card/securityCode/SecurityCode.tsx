@@ -1,12 +1,13 @@
 import { Input } from '@/components/input/Input';
 import { CardInputProps } from '../cardInput.type';
 import { INPUT } from '@/components/input/input.constant';
+import { CardForm } from '@/pages/Payments/payments.type';
 
 export const SecurityCode = ({
   formMethods,
   autoFocusMethods,
   fields,
-}: CardInputProps) => {
+}: CardInputProps<CardForm>) => {
   const { register, errors } = formMethods;
   const { autoFocusRefs, handleAutoFocus } = autoFocusMethods;
 

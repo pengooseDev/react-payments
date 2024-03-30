@@ -1,10 +1,11 @@
 import { ModalItem } from '@/components/modal/atom/Modalitem';
-import { FormMethodsProps } from '@/hooks/useForm/useForm';
-import { CARD_COMPANY } from './company.constant';
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
+import { CARD_COMPANY } from './company.constant';
+import { CardInputFormMethods } from '../cardInput.type';
 
-interface CompanyProps extends FormMethodsProps {
+interface CompanyProps {
+  formMethods: CardInputFormMethods;
   closeModal: () => void;
 }
 

@@ -9,7 +9,7 @@ import {
 } from '@/components/input/molecules/card/cardInput.constant';
 import { Modal } from '@/components/modal/Modal';
 import { STEP } from '../payments.constant';
-import { Card as CardData } from '../payments.type';
+import { CardForm } from '../payments.type';
 import { Funnel } from '../payments.context';
 
 export interface CardFulfilledForm {
@@ -27,7 +27,7 @@ export type CardFulfilledAction = React.Dispatch<
 export const AddCard = () => {
   const { isOpen, openModal, closeModal } = Modal.use();
   const { setStep, setData } = Funnel.useContext();
-  const formMethods = useForm();
+  const formMethods = useForm<CardForm>();
   const { values, errors } = formMethods;
   const fieldAmount = Object.values(CARD_FIELDS).reduce(
     (amount, field) => (amount += Object.values(field).length),
@@ -48,11 +48,11 @@ export const AddCard = () => {
         ...values,
         createdAt: new Date(),
         id: uuidv4(),
-      } as CardData;
+      };
 
       const newContextData = {
         ...prevData,
-        cardList: [...prevData.cardList, newCard],
+        tempCard: newCard,
       };
 
       return newContextData;
@@ -67,14 +67,10 @@ export const AddCard = () => {
   return (
     <>
       <div>
-        <button onClick={handlePrev} className="button-reset">
-          <h2 className="page-title">{`< 카드 추가`}</h2>
+        <button onClick={handlePrev} className='button-reset'>
+          <h2 className='page-title'>{`< 카드 추가`}</h2>
         </button>
-        <Card
-          onClick={openModal}
-          data={values as unknown as CardData}
-          isComplete={false}
-        />
+        <Card onClick={openModal} data={values} isComplete={false} />
 
         <CardInput.Number
           formMethods={formMethods}
@@ -103,7 +99,7 @@ export const AddCard = () => {
         />
 
         {isAllFieldsFulfilled && (
-          <div className="button-box" onClick={handleNext}>
+          <div className='button-box' onClick={handleNext}>
             <button
               className={`button-text button-reset button-activate ${optaionalClassName}`}
             >

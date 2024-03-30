@@ -4,6 +4,7 @@ import { Password } from './Password';
 import { useForm } from '@/hooks/useForm/useForm';
 import { CARD_FIELDS, CARD_FORM } from '../cardInput.constant';
 import { useAutoFocus } from '@/hooks/useAutoFocus/useAutoFocus';
+import { CardForm } from '@/pages/Payments/payments.type';
 
 const meta = {
   title: 'Input/Molecule/Card/Password',
@@ -15,7 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BasicPassword: Story = (args: ArgTypes) => {
-  const formMethods = useForm();
+  const formMethods = useForm<CardForm>();
   const fieldAmount = Object.values(CARD_FIELDS).reduce(
     (amount, field) => (amount += Object.values(field).length),
     0
