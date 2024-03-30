@@ -3,6 +3,7 @@ import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CARD_COMPANY } from './company.constant';
 import { CardInputFormMethods } from '../cardInput.type';
+import { Dot } from '@/components/common/Dot';
 
 interface CompanyProps {
   formMethods: CardInputFormMethods;
@@ -27,7 +28,11 @@ export const Company = ({ formMethods, closeModal }: CompanyProps) => {
               },
             })}
           />
-          <ModalItem key={key} color={value.color} name={value.name} />
+          <ModalItem
+            key={key}
+            name={value.name}
+            topContent={<Dot color={value.color} />}
+          />
         </label>
       ))}
     </div>
