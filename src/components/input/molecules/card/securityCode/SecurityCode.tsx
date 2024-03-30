@@ -17,13 +17,15 @@ export const SecurityCode = ({
     .filter((error) => error);
   const allFieldsFulfilled = fieldsFulfilled.every((field) => field);
   const optionalClassName = allFieldsFulfilled ? 'text-fulfilled' : '';
+  const errorMessage = fieldErrors.filter((error) => error)[0] as string;
 
   return (
     <Input.Container>
-      <Input.Title>
-        <span>{SECURITY_CODE.TITLE}</span>
-        <Input.Error errors={fieldErrors} />
-      </Input.Title>
+      <Input.Header
+        title={SECURITY_CODE.TITLE}
+        hasError={fieldErrors.length > 0}
+        errorMessage={errorMessage}
+      />
       {Object.values(SECURITY_CODE.FIELDS).map(
         ({ name, type, validate, maxLength, placeholder, autoFocusIndex }) => (
           <Input

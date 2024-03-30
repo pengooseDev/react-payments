@@ -8,6 +8,7 @@ import {
   InputTitle,
 } from './atom';
 import { forwardRef } from 'react';
+import { InputHeader } from './molecules/Header';
 
 const InputFactory = forwardRef<HTMLInputElement, InputFactoryProps>(
   ({ type, ...rest }, ref) => {
@@ -30,4 +31,5 @@ export const Input = Object.assign(InputFactory, {
   Title: InputTitle,
   Box: InputBox,
   Error: InputError,
+  Header: InputHeader,
 });

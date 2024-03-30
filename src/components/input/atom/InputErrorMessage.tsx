@@ -1,14 +1,8 @@
-import { ValidateResult } from '@/hooks/useForm/useForm.type';
-
 interface InputErrorProps {
-  errors: ValidateResult[];
+  hasError: boolean;
+  errorMessage: string;
 }
 
-export const InputError = ({ errors }: InputErrorProps) => {
-  const errorMessages = errors.filter((error) => error);
-  const hasError = errors.length > 0;
-
-  return (
-    <>{hasError && <span className='text-error'>{errorMessages[0]}</span>}</>
-  );
+export const InputError = ({ hasError, errorMessage }: InputErrorProps) => {
+  return <>{hasError && <span className='text-error'>{errorMessage}</span>}</>;
 };

@@ -17,13 +17,16 @@ export const ExpireDate = ({
     .filter((error) => error);
   const allFieldsFulfilled = fieldsFulfilled.every((field) => field);
   const optionalClassName = allFieldsFulfilled ? 'text-fulfilled' : '';
+  const errorMessage = fieldErrors.filter((error) => error)[0] as string;
 
   return (
     <Input.Container>
-      <Input.Title>
-        <span>{EXPIRE_DATE.TITLE}</span>
-        <Input.Error errors={fieldErrors} />
-      </Input.Title>
+      <Input.Header
+        title={EXPIRE_DATE.TITLE}
+        hasError={fieldErrors.length > 0}
+        errorMessage={errorMessage}
+      />
+
       <Input.Box
         separator={{
           symbol: INPUT.BOX.SEPARATOR.SLASH,
