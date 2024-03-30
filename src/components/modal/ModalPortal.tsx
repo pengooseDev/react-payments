@@ -1,7 +1,11 @@
 import ReactDom from 'react-dom';
 
-export const ModalPortal = ({ children }: React.PropsWithChildren) => {
-  const root = document.getElementById('modal-root');
+interface ModalPortalProps extends React.PropsWithChildren {
+  rootId?: string;
+}
+
+export const ModalPortal = ({ children, rootId }: ModalPortalProps) => {
+  const root = document.getElementById(rootId || 'modal-root');
 
   if (!root) return null;
 
