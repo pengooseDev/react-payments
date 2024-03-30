@@ -3,10 +3,7 @@ import { CardInput } from '@/components/input/molecules/card/CardInput';
 import { useForm } from '@/hooks/useForm/useForm';
 import { Card } from '@/components/card/Card';
 import { useAutoFocus } from '@/hooks/useAutoFocus/useAutoFocus';
-import {
-  CARD_FIELDS,
-  CARD_FORM,
-} from '@/components/input/molecules/card/cardInput.constant';
+import { CARD_FIELDS } from '@/components/input/molecules/card/cardInput.constant';
 import { Modal } from '@/components/modal/Modal';
 import { STEP } from '../payments.constant';
 import { CardForm } from '../payments.type';
@@ -75,27 +72,22 @@ export const AddCard = () => {
         <CardInput.Number
           formMethods={formMethods}
           autoFocusMethods={autoFocusMethods}
-          fields={CARD_FORM.CARD_NUMBER}
         />
         <CardInput.ExpireDate
           formMethods={formMethods}
           autoFocusMethods={autoFocusMethods}
-          fields={CARD_FORM.EXPIRE_DATE}
         />
         <CardInput.OwnerName
           formMethods={formMethods}
           autoFocusMethods={autoFocusMethods}
-          fields={CARD_FORM.OWNER_NAME}
         />
         <CardInput.SecurityCode
           formMethods={formMethods}
           autoFocusMethods={autoFocusMethods}
-          fields={CARD_FORM.SECURITY_CODE}
         />
         <CardInput.Password
           formMethods={formMethods}
           autoFocusMethods={autoFocusMethods}
-          fields={CARD_FORM.PASSWORD}
         />
 
         {isAllFieldsFulfilled && (

@@ -1,17 +1,16 @@
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CardInputProps } from '../cardInput.type';
-import { CardForm } from '@/pages/Payments/payments.type';
+import { CARD_NUMBER } from './cardNumber.constant';
 
 export const CardNumber = ({
   formMethods,
   autoFocusMethods,
-  fields,
-}: CardInputProps<CardForm>) => {
+}: CardInputProps) => {
   const { register, errors } = formMethods;
   const { autoFocusRefs, handleAutoFocus } = autoFocusMethods;
 
-  const fieldKeys = Object.values(fields.FIELDS).map(({ name }) => name);
+  const fieldKeys = Object.values(CARD_NUMBER.FIELDS).map(({ name }) => name);
   const fieldsFulfilled = Object.values(fieldKeys).map((key) => !errors[key]);
   const fieldErrors = Object.values(fieldKeys)
     .map((key) => errors[key])
@@ -22,7 +21,7 @@ export const CardNumber = ({
   return (
     <Input.Container>
       <Input.Title>
-        <span>{fields.TITLE}</span>
+        <span>{CARD_NUMBER.TITLE}</span>
         <Input.Error errors={fieldErrors} />
       </Input.Title>
       <Input.Box
@@ -31,7 +30,7 @@ export const CardNumber = ({
           fieldsFulfilled,
         }}
       >
-        {Object.values(fields.FIELDS).map(
+        {Object.values(CARD_NUMBER.FIELDS).map(
           ({ name, type, validate, maxLength, autoFocusIndex }) => (
             <Input
               key={name}

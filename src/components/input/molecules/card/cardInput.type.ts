@@ -20,8 +20,7 @@ export interface InputFields<T> {
 
 export type CardInputFormMethods = ReturnType<typeof useForm<CardForm>>;
 
-export interface CardInputProps<T> {
+export interface CardInputProps {
   formMethods: CardInputFormMethods;
-  fields: InputFields<T>;
   autoFocusMethods: ReturnType<typeof useAutoFocus>;
 }

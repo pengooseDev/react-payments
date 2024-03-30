@@ -1,17 +1,13 @@
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CardInputProps } from '../cardInput.type';
-import { CardForm } from '@/pages/Payments/payments.type';
+import { PASSWORD } from './password.constant';
 
-export const Password = ({
-  formMethods,
-  autoFocusMethods,
-  fields,
-}: CardInputProps<CardForm>) => {
+export const Password = ({ formMethods, autoFocusMethods }: CardInputProps) => {
   const { register, errors } = formMethods;
   const { autoFocusRefs, handleAutoFocus } = autoFocusMethods;
 
-  const fieldKeys = Object.values(fields.FIELDS)
+  const fieldKeys = Object.values(PASSWORD.FIELDS)
     .filter(({ readOnly }) => !readOnly)
     .map(({ name }) => name);
   const fieldsFulfilled = Object.values(fieldKeys).map((key) => !errors[key]);
@@ -24,10 +20,10 @@ export const Password = ({
   return (
     <Input.Container>
       <Input.Title>
-        <span>{fields.TITLE}</span>
+        <span>{PASSWORD.TITLE}</span>
         <Input.Error errors={fieldErrors} />
       </Input.Title>
-      {Object.values(fields.FIELDS).map(
+      {Object.values(PASSWORD.FIELDS).map(
         ({
           name,
           type,

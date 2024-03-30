@@ -3,7 +3,7 @@ import { OwnerName } from './OwnerName';
 import { useForm } from '@/hooks/useForm/useForm';
 import { Background } from '@/stories/components/Background';
 import { useAutoFocus } from '@/hooks/useAutoFocus/useAutoFocus';
-import { CARD_FIELDS, CARD_FORM } from '../cardInput.constant';
+import { CARD_FIELDS } from '../cardInput.constant';
 import { CardForm } from '@/pages/Payments/payments.type';
 
 const meta = {
@@ -31,7 +31,6 @@ export const BasicOwnerName: Story = (args: ArgTypes) => {
         {...args}
         formMethods={formMethods}
         autoFocusMethods={autoFocusMethods}
-        fields={CARD_FORM.OWNER_NAME}
       />
     </Background>
   );

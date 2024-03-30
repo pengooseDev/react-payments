@@ -2,7 +2,7 @@ import { ArgTypes, Meta, StoryObj } from '@storybook/react';
 import { SecurityCode } from './SecurityCode';
 import { useForm } from '@/hooks/useForm/useForm';
 import { Background } from '@/stories/components/Background';
-import { CARD_FIELDS, CARD_FORM } from '../cardInput.constant';
+import { CARD_FIELDS } from '../cardInput.constant';
 import { useAutoFocus } from '@/hooks/useAutoFocus/useAutoFocus';
 import { CardForm } from '@/pages/Payments/payments.type';
 
@@ -31,7 +31,6 @@ export const BasicSecurityCode: Story = (args: ArgTypes) => {
         {...args}
         formMethods={formMethods}
         autoFocusMethods={autoFocusMethods}
-        fields={CARD_FORM.SECURITY_CODE}
       />
     </Background>
   );

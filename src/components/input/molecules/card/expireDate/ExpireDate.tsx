@@ -1,17 +1,16 @@
 import { Input } from '@/components/input/Input';
 import { INPUT } from '@/components/input/input.constant';
 import { CardInputProps } from '../cardInput.type';
-import { CardForm } from '@/pages/Payments/payments.type';
+import { EXPIRE_DATE } from './expireDate.constant';
 
 export const ExpireDate = ({
   formMethods,
   autoFocusMethods,
-  fields,
-}: CardInputProps<CardForm>) => {
+}: CardInputProps) => {
   const { register, errors } = formMethods;
   const { autoFocusRefs, handleAutoFocus } = autoFocusMethods;
 
-  const fieldKeys = Object.values(fields.FIELDS).map(({ name }) => name);
+  const fieldKeys = Object.values(EXPIRE_DATE.FIELDS).map(({ name }) => name);
   const fieldsFulfilled = Object.values(fieldKeys).map((key) => !errors[key]);
   const fieldErrors = Object.values(fieldKeys)
     .map((key) => errors[key])
@@ -22,7 +21,7 @@ export const ExpireDate = ({
   return (
     <Input.Container>
       <Input.Title>
-        <span>{fields.TITLE}</span>
+        <span>{EXPIRE_DATE.TITLE}</span>
         <Input.Error errors={fieldErrors} />
       </Input.Title>
       <Input.Box
@@ -32,7 +31,7 @@ export const ExpireDate = ({
         }}
         className='w-50'
       >
-        {Object.values(fields.FIELDS).map(
+        {Object.values(EXPIRE_DATE.FIELDS).map(
           ({
             name,
             type,

@@ -1,17 +1,16 @@
 import { Input } from '@/components/input/Input';
 import { CardInputProps } from '../cardInput.type';
 import { INPUT } from '@/components/input/input.constant';
-import { CardForm } from '@/pages/Payments/payments.type';
+import { SECURITY_CODE } from './securityCode.constant';
 
 export const SecurityCode = ({
   formMethods,
   autoFocusMethods,
-  fields,
-}: CardInputProps<CardForm>) => {
+}: CardInputProps) => {
   const { register, errors } = formMethods;
   const { autoFocusRefs, handleAutoFocus } = autoFocusMethods;
 
-  const fieldKeys = Object.values(fields.FIELDS).map(({ name }) => name);
+  const fieldKeys = Object.values(SECURITY_CODE.FIELDS).map(({ name }) => name);
   const fieldsFulfilled = Object.values(fieldKeys).map((key) => !errors[key]);
   const fieldErrors = Object.values(fieldKeys)
     .map((key) => errors[key])
@@ -22,10 +21,10 @@ export const SecurityCode = ({
   return (
     <Input.Container>
       <Input.Title>
-        <span>{fields.TITLE}</span>
+        <span>{SECURITY_CODE.TITLE}</span>
         <Input.Error errors={fieldErrors} />
       </Input.Title>
-      {Object.values(fields.FIELDS).map(
+      {Object.values(SECURITY_CODE.FIELDS).map(
         ({ name, type, validate, maxLength, placeholder, autoFocusIndex }) => (
           <Input
             key={name}

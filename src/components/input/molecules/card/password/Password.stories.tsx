@@ -2,7 +2,7 @@ import { ArgTypes, Meta, StoryObj } from '@storybook/react';
 import { Background } from '@/stories/components/Background';
 import { Password } from './Password';
 import { useForm } from '@/hooks/useForm/useForm';
-import { CARD_FIELDS, CARD_FORM } from '../cardInput.constant';
+import { CARD_FIELDS } from '../cardInput.constant';
 import { useAutoFocus } from '@/hooks/useAutoFocus/useAutoFocus';
 import { CardForm } from '@/pages/Payments/payments.type';
 
@@ -31,7 +31,6 @@ export const BasicPassword: Story = (args: ArgTypes) => {
         {...args}
         formMethods={formMethods}
         autoFocusMethods={autoFocusMethods}
-        fields={CARD_FORM.PASSWORD}
       />
     </Background>
   );
